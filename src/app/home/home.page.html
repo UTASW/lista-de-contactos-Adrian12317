@@ -1,20 +1,115 @@
-<ion-header translucent>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Contactos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content >
+  <h1 style="text-align: center;">Agregar contacto</h1>
+  <ion-item id="name">
+      <ion-label  position="floating">Nombre</ion-label>
+      <ion-input  [(ngModel)]="Myservice.strNombre"  type="text"></ion-input>
+  </ion-item>
+ <ion-item id="number">
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input  [(ngModel)]="Myservice.intNumero" type="number"></ion-input>
+ </ion-item>
+ <ion-item id="email">
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input  [(ngModel)]="Myservice.strCorreo" type="text"></ion-input>
+ </ion-item>
+ <ion-item>
+    <ion-label  position="floating"> Fecha de nacimiento: MM DD YY</ion-label>
+    <ion-datetime  [(ngModel)]="Myservice.date" displayFormat="DD/MMM/YYYY" placeholder="Select Date"></ion-datetime>
+  </ion-item>
+ <ion-item id="notes">
+      <ion-label position="floating">Notas</ion-label>
+      <ion-input  [(ngModel)]="Myservice.strNotas" type="text"></ion-input>
+ </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+ <ion-item id="genere">
+    <ion-radio-group [(ngModel)]="Myservice.strGenero">
+      <ion-list-header>
+        <ion-label >Genero</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Hombre</ion-label>
+        <ion-radio   slot="start" value="hombre"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mujer</ion-label>
+        <ion-radio  slot="start" value="mujer"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    </ion-item>
+      <ion-button color="primary" expand="full" shape="round" (click)="Myservice.addperson()">
+          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+       </ion-button>
+
+       <app-mycard></app-mycard>
+
+  <!-- <h1 style="text-align: center;">Mis contactos</h1>
+  <ion-item>
+    <ion-label>Ver notas</ion-label>
+      <ion-toggle [(ngModel)]="Myservice.shownotes" ></ion-toggle>
+  </ion-item> -->
+<!--==============================================================================================================================-->
+  <!-- <div *ngIf="Myservice.arrPersonas.length!==0 ; else contenido">
+    <ion-card *ngFor="let item of Myservice.arrPersonas" [ngClass]="{'hombre': item.genero === 'hombre', 'mujer': item.genero === 'mujer'}" >
+
+      <ion-card-header>
+      <div class="nombre">
+        <ion-icon  name="person-circle-outline" color="light" slot="start" size="large"></ion-icon>
+        <br>
+        <ion-label >{{item.nombre}}</ion-label>
+      </div>
+    </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="icon-label">
+          <ion-icon   name="call-outline" slot="start" size="large"></ion-icon>
+          <br>
+          <ion-label>{{item.numero}}</ion-label>
+        </div>
+        <div class="icon-label">
+          <ion-icon  name="mail-outline" slot="start" size="large"></ion-icon>
+          <br>
+          <ion-label>{{item.correo}}</ion-label>
+
+        </div>
+
+        <div *ngIf="Myservice.shownotes==false; else show ">
+
+        </div>
+        <ng-template #show >
+          <p >{{item.notas}}</p>
+        </ng-template>
+
+      </ion-card-content>
+
+        <ion-button color="danger"  (click)="Myservice.eliminar(item)" expand="block" >
+          <ion-icon  name="trash"></ion-icon>
+        </ion-button>
+
+    </ion-card>
   </div>
+
+  <ng-template  #contenido>
+    <h3 style="text-align: center;">No hay contactos</h3>
+  </ng-template> -->
+
+
+
+
+
+
+
+
+
 </ion-content>

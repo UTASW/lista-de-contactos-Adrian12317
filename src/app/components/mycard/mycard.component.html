@@ -1,0 +1,55 @@
+ <h1 style="text-align: center;">Mis contactos</h1>
+  <ion-item>
+    <ion-label>Ver notas</ion-label>
+      <ion-toggle [(ngModel)]="Myservice.shownotes" ></ion-toggle>
+  </ion-item>
+<!--==============================================================================================================================-->
+  <div *ngIf="Myservice.arrPersonas.length!==0 ; else contenido">
+    <ion-card *ngFor="let item of Myservice.arrPersonas" [ngClass]="{'hombre': item.genero === 'hombre', 'mujer': item.genero === 'mujer'}" >
+
+      <ion-card-header>
+      <div class="nombre">
+        <ion-icon  name="person-circle-outline" color="light" slot="start" size="large"></ion-icon>
+        <br>
+        <ion-label >{{item.nombre}}</ion-label>
+      </div>
+    </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="icon-label">
+          <ion-icon   name="call-outline" slot="start" size="large"></ion-icon>
+          <br>
+          <ion-label>{{item.numero}}</ion-label>
+        </div>
+        <div class="icon-label">
+          <ion-icon  name="mail-outline" slot="start" size="large"></ion-icon>
+          <br>
+          <ion-label>{{item.correo}}</ion-label>
+
+        </div>
+        <div class="icon-label">
+          <ion-label>Fecha de nacimiento</ion-label>                 
+          
+          <ion-label>{{item.date|date}}</ion-label>
+
+        </div>
+        <div *ngIf="Myservice.shownotes==false; else show ">
+
+        </div>
+        <ng-template #show >
+          <p >{{item.notas}}</p>
+        </ng-template>
+
+      </ion-card-content>
+
+        <ion-button color="danger"  (click)="Myservice.eliminar(item)" expand="block" >
+          <ion-icon  name="trash"></ion-icon>
+        </ion-button>
+
+    </ion-card>
+  </div>
+
+  <ng-template  #contenido>
+    <h3 style="text-align: center;">No hay contactos</h3>
+  </ng-template>
